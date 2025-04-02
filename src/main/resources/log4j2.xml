@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <!-- Define project name -->
+        <Property name="projectName">quiz-central</Property>
+        <!-- Define timestamp format for log file -->
+        <Property name="logFileName">${projectName}_${date:yyyy-MM-dd_HH-mm-ss}.log</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- File Appender -->
+        <File name="FileLogger" fileName="D:/Work Folder/Logs/Quiz-Central/Logs/${logFileName}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Root>
+    </Loggers>
+</Configuration>
