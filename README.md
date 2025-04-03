@@ -27,14 +27,21 @@ Quiz Central is a console-based quiz application where users can register, authe
 
 ## 📂 Project Structure  
 ```
-📁 QuizCentral  
-│── 📜 README.md  
-│── 📜 quiz.sql        # Database schema  
-│── 📂 src  
-│   │── QuizApp.java   # Main application  
-│   │── User.java      # User authentication logic  
-│   │── Quiz.java      # Quiz mechanics  
-│   │── Database.java  # JDBC connection & queries  
+📦 src
+├── 📂 main
+│   ├── 📂 java
+│   │   ├── 📂 com
+│   │       ├── 📂 qc
+│   │           ├── 📂 userauth
+│   │               ├── 📂 model
+│   │               ├── 📂 repository
+│   │               ├── 📂 service
+│   ├── 📂 resources
+├── 📂 test
+│   ├── 📂 java
+│       ├── 📂 org
+│           ├── 📂 example
+ 
 ```
 
 ---
@@ -82,7 +89,6 @@ java -cp .:postgresql.jar src.QuizApp
 ## 📊 Database Schema  
 ```sql
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash TEXT NOT NULL
 );
