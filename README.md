@@ -1,63 +1,107 @@
-Quiz Central
- 
- 
- 
-Overview
-Quiz Central is a console-based quiz application built using Java and PostgreSQL. Users can register, log in, and play quizzes, with their scores tracked over time. Future releases will expand the application to a desktop and web-based version, introducing more difficulty levels and additional features.
-________________________________________
-Application Flow
-Here’s a simple diagram showing how the app works:
-     +--------------------+
-     |   User Registers   |
-     +--------------------+
-               |
-               v
-     +--------------------+
-     |  User Logs In      |
-     +--------------------+
-               |
-               v
-     +--------------------+
-     |   Starts Quiz      |
-     +--------------------+
-               |
-               v
-     +--------------------+
-     |  Scores Saved      |
-     +--------------------+
-               |
-               v
-     +--------------------+
-     | Score History View |
-     +--------------------+
-________________________________________
-Features
-✅ User Registration & Authentication – Secure login system with hashed passwords.
-✅ Quiz Gameplay – Users take quizzes and receive scores at the end.
-✅ Score Tracking – History of scores is stored for each user.
-✅ PostgreSQL Integration – Stores user data, quiz questions, and scores.
-Future Enhancements
-🚀 Desktop & Web Versions – Transitioning from a console-based app.
-🚀 Multiple Difficulty Levels – More challenge options.
-🚀 Leaderboard & Analytics – Insights into top players and performance trends.
-________________________________________
-Requirements
-•	Java (JDK 17 or later)
-•	PostgreSQL (Latest version)
-•	JDBC Driver for PostgreSQL
-________________________________________
-Setup Instructions
-1.	Clone the Repository
-2.	git clone https://github.com/your-repo/quiz-central.git
-3.	cd quiz-central
-4.	Set Up Database
-o	Create a PostgreSQL database.
-o	Run the provided SQL scripts to create necessary tables.
-5.	Build and Run the Application
-6.	javac -cp .:postgresql.jar Main.java  
-7.	java -cp .:postgresql.jar Main  
-________________________________________
-License
-This project is licensed under the MIT License.
-Contributing
-Contributions are welcome! Feel free to submit issues or pull requests.
+🧠 Quiz Central
+A Java-based Quiz Application using JDBC and PostgreSQL
+
+
+📌 Overview
+Quiz Central is a console-based quiz application where users can register, authenticate, and take quizzes. Scores are stored in a history tracking system, ensuring that users can see their progress over time.
+
+Current Features:
+✔ User Registration & Login (with password hashing)
+✔ Single-Level Quiz Gameplay
+✔ Score History Tracking
+✔ PostgreSQL Database Integration
+
+Future Enhancements:
+🔹 Multi-Level Quizzes
+🔹 Desktop GUI Version (JavaFX/Swing)
+🔹 Web-Based Version (Spring Boot & React)
+🔹 Leaderboards & Multiplayer Mode
+
+🛠️ Technologies Used
+Java (JDBC for database connectivity)
+
+PostgreSQL (For storing user data and scores)
+
+BCrypt (For password hashing)
+
+📂 Project Structure
+pgsql
+Copy
+📁 QuizCentral
+│── 📜 README.md
+│── 📜 quiz.sql        # Database schema
+│── 📂 src
+│   │── QuizApp.java   # Main application
+│   │── User.java      # User authentication logic
+│   │── Quiz.java      # Quiz mechanics
+│   │── Database.java  # JDBC connection & queries
+🚀 Installation & Setup
+1️⃣ Prerequisites
+🔹 Java 11+ (JDK Installed)
+🔹 PostgreSQL Installed
+🔹 PostgreSQL JDBC Driver
+
+2️⃣ Database Setup
+Open PostgreSQL and create a new database:
+
+sql
+Copy
+CREATE DATABASE quiz_central;
+Run the provided quiz.sql file to create tables.
+
+Update Database.java with your PostgreSQL credentials:
+
+java
+Copy
+private static final String URL = "jdbc:postgresql://localhost:5432/quiz_central";
+private static final String USER = "your_username";
+private static final String PASSWORD = "your_password";
+3️⃣ Running the Application
+Compile Java files:
+
+sh
+Copy
+javac -cp .:postgresql.jar src/*.java  
+Run the main class:
+
+sh
+Copy
+java -cp .:postgresql.jar src.QuizApp  
+🔐 Security
+Password Hashing: Uses BCrypt to securely hash passwords.
+
+SQL Injection Prevention: Uses Prepared Statements to prevent attacks.
+
+📊 Database Schema
+sql
+Copy
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL
+);
+
+CREATE TABLE scores (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id),
+    score INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+🏆 Future Roadmap
+Version	Features Planned
+v1.0	Console-based app, single-level quiz, user authentication
+v2.0	Desktop version with JavaFX, multiple quiz levels
+v3.0	Web-based app with Spring Boot & React, leaderboards
+🎨 Architecture Diagram
+(Basic Representation of the System Flow)
+
+pgsql
+Copy
++---------------+        +---------------+        +------------+
+|  User Input   | -----> |  Java (JDBC)  | -----> | PostgreSQL |
++---------------+        +---------------+        +------------+
+🤝 Contributing
+Feel free to fork this repository, improve features, and submit a pull request.
+
+📧 Contact
+For any queries or suggestions, reach out to me at your.email@example.com.
