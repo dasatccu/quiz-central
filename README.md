@@ -1,6 +1,3 @@
-Here’s the **Markdown-formatted** version of your `README.md`. You can copy and paste this directly into your file without losing formatting:  
-
----
 
 ```md
 # 🧠 Quiz Central  
