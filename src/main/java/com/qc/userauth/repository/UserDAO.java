@@ -6,11 +6,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
     private Connection connection;
     private static Logger logger = LogManager.getLogger(UserDAO.class);
     private static String CREATE_USER = "insert into \"centralUserPortal\" values (?,?)";
+    private static String GET_PASSWORD = "select \"password\" from \"centralUserPortal\" where \"username\" = (?)";
 
     public UserDAO(){
         this.connection = DBConnection.getConnectionInstance();
@@ -27,5 +30,22 @@ public class UserDAO {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
+    }
+
+    public String fetchPassword(String userName) throws SQLException {
+        ResultSet resultSet = null;
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(GET_PASSWORD);
+            logger.info("Fetching password from DB for username :: {}",userName);
+            statement.setString(1,userName);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            logger.info("Password fetched from DB :: {}",resultSet);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
+        assert resultSet != null;
+        return resultSet.getString(1);
     }
 }
