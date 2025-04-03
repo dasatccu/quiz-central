@@ -1,5 +1,3 @@
-
-```md
 # 🧠 Quiz Central  
 *A Java-based Quiz Application using JDBC and PostgreSQL*  
 
