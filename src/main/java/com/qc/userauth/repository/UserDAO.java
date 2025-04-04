@@ -42,7 +42,6 @@ public class UserDAO {
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {
-            DBConnection.closeConnection();
             return status;
         }
     }
