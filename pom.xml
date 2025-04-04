@@ -16,6 +16,13 @@
     <log4j.version>2.21.0</log4j.version>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/dasatccu/quiz-central</url>
+    </repository>
+  </distributionManagement>
+
   <build>
     <plugins>
       <plugin>
