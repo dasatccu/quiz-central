@@ -1,3 +1,4 @@
+[![Maven Package](https://github.com/dasatccu/quiz-central/actions/workflows/maven-package.yml/badge.svg?branch=main)](https://github.com/dasatccu/quiz-central/actions/workflows/maven-package.yml)
 # 🧠 Quiz Central  
 *A Java-based Quiz Application using JDBC and PostgreSQL*  
 
