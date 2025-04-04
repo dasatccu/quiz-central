@@ -1,5 +1,8 @@
 package com.qc.userauth.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -8,6 +11,8 @@ import java.util.Base64;
  * The type Sha 256 hashing.
  */
 public class SHA256Hashing {
+    private static Logger logger = LogManager.getLogger(SHA256Hashing.class);
+
     /**
      * Hash password string.
      *
@@ -22,6 +27,8 @@ public class SHA256Hashing {
             throw new RuntimeException(e);
         }
         byte[] hash = md.digest(password.getBytes());
-        return Base64.getEncoder().encodeToString(hash);
+        String hashCode = Base64.getEncoder().encodeToString(hash);
+        logger.info("Hashed Code :: "+hashCode);
+        return hashCode;
     }
 }

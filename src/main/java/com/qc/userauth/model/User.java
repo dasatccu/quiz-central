@@ -1,5 +1,8 @@
 package com.qc.userauth.model;
 
+/**
+ * The type User.
+ */
 public class User implements UserModel{
     private String userName;
     private String userPassword;
