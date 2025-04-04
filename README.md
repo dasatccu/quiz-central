@@ -21,7 +21,7 @@ Quiz Central is a console-based quiz application where users can register, authe
 ## 🛠️ Technologies Used  
 - **Java** *(JDBC for database connectivity)*  
 - **PostgreSQL** *(For storing user data and scores)*  
-- **BCrypt** *(For password hashing)*  
+- **SHA256Hashing** *(For password hashing)*  
 
 ---
 
