@@ -7,10 +7,16 @@ import java.util.Scanner;
 
 import static com.qc.userauth.controller.LoginModule.registrationModule;
 
+/**
+ * The type User registration module.
+ */
 public class UserRegistrationModule {
     private static Scanner scanner = new Scanner(System.in);
     private static Logger logger = LogManager.getLogger(UserRegistrationModule.class);
 
+    /**
+     * Register user.
+     */
     public static void registerUser() {
         System.out.println("=== User Registration ===");
 

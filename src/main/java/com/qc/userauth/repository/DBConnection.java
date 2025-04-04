@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * The type Db connection.
+ */
 public class DBConnection {
     private static final Logger logger = LogManager.getLogger(DBConnection.class);
     private static Connection connection=null;
@@ -22,6 +25,11 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Get connection instance connection.
+     *
+     * @return the connection
+     */
     public static Connection getConnectionInstance(){
         if(connection == null){
             DBConnection dbConnection = new DBConnection();
@@ -32,6 +40,9 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Close connection.
+     */
     public static void closeConnection(){
         if(connection != null){
             try {

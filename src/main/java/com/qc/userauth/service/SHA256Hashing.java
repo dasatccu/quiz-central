@@ -12,6 +12,7 @@ import java.util.Base64;
  */
 public class SHA256Hashing {
     private static Logger logger = LogManager.getLogger(SHA256Hashing.class);
+
     /**
      * Hash password string.
      *

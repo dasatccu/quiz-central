@@ -6,11 +6,17 @@ import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.sql.SQLException;
 
+import static com.qc.userauth.view.UserLoginModule.loginAdmin;
+import static com.qc.userauth.view.UserLoginModule.loginUser;
+
+/**
+ * The type Welcome page.
+ */
 public class WelcomePage {
     private static final Logger logger = LogManager.getLogger(WelcomePage.class);
-    public static void welcomePage() throws IOException {
+    private static int welcomePage() throws IOException {
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(System.in));
 
@@ -34,12 +40,20 @@ public class WelcomePage {
             case 2:
                 logger.info("User selected: Login as User");
                 System.out.println("Redirecting to user login...");
-                // Call user login method
+                try {
+                    loginUser();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case 3:
                 logger.info("User selected: Login as Admin");
                 System.out.println("Redirecting to admin login...");
-                // Call admin login method
+                try {
+                    loginAdmin();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case 0:
                 logger.info("User selected: Exit");
@@ -49,7 +63,20 @@ public class WelcomePage {
                 logger.error("Invalid choice entered: " + choice);
                 System.out.println("Invalid choice! Please try again.");
         }
+        return choice;
+    }
 
-        reader.close();
+    /**
+     * Launch welcome page.
+     */
+    public static void launchWelcomePage(){
+        int choice = 1;
+        while(choice!=0){
+            try {
+                choice = welcomePage();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
